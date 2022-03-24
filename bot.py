@@ -42,14 +42,8 @@ async def s(ctx, *, text=None):
         vc.play(discord.FFmpegPCMAudio('msg.mp3'), after=lambda e: print(f"Finished playing: {e}"))
         vc.source = discord.PCMVolumeTransformer(vc.source)
         vc.source.volume = 1
-
-    except discord.ClientExteption as e:
-        await ctx.send(f"A client exception occurred: {e}")
-    except discord.TypeError as e:
-        await ctx.send(f"A TypeError exception occurred: {e}")
-    except discord.OpusNotLoaded as e:
-        await ctx.send(f"A OpusNotLoaded exception occurred: {e}")
-
+    finally:
+        return
 
 @bot.command(name='bb', help='Make me leave from the Voice Chat.')
 async def bb(ctx):
